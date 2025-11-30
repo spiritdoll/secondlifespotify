@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Auth</title>
+</head>
+<body>
+    <h2>Spotify Authorization Code</h2>
+    <div id="code"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const state = urlParams.get('state');
+        const error = urlParams.get('error');
+        
+        if (code) {
+            document.getElementById('code').innerHTML = 
+                `<p><strong>Código:</strong> ${code}</p>
+                 <p>Copie este código e use no Second Life:<br>
+                 <code>/22 code ${code}</code></p>`;
+        } else if (error) {
+            document.getElementById('code').innerHTML = 
+                `<p>Erro: ${error}</p>`;
+        } else {
+            document.getElementById('code').innerHTML = 
+                `<p>Nenhum código encontrado na URL.</p>`;
+        }
+    </script>
+</body>
+</html>
